@@ -44,7 +44,7 @@ dnf -y install @xfce-desktop
 
 # DESKTOP APPS
 # terminal
-dnf copr enable ponesicek/ghostty-bin
+dnf -y copr enable ponesicek/ghostty-bin
 dnf -y install ghostty
 # file manager
 dnf -y install pcmanfm
