@@ -88,7 +88,7 @@ dnf -y copr enable ycollet/audinux
 ln -s /usr/lib64/pipewire-0.3/jack/libjack.so.0 /usr/lib64/libjack.so
 # libraries for some audio plugins to work correctly
 dnf -y install lv2-gtk-ui-bridge
-dnf -y install juce zenity
+dnf -y install JUCE zenity
 # DAW plugins
 dnf -y install guitarix lsp-plugins
 # install Musescore music sheet editor
