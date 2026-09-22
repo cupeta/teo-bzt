@@ -55,7 +55,8 @@ dnf -y install firefox transmission
 # audio utils
 dnf -y install qpwgraph easyeffects vlc
 # office & productiviy
-dnf -y install libreoffice mousepad homebank galculator telegram-desktop
+dnf -y install libreoffice mousepad homebank galculator 
+#telegram-desktop
 # graphic design & photo editing
 dnf -y install inkscape gimp blender
 # kmonad for keyboard macros
