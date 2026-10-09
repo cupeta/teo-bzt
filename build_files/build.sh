@@ -109,7 +109,7 @@ dnf -y install ffmpeg x264-libs obs-studio obs-studio-plugin-x264 --allowerasing
 #dnf -y copr enable atim/heroic-games-launcher
 #dnf -y install steam lutris heroic-games-launcher lact goverlay mangohud mangohud.i686 protonplus protontricks vkBasalt vkBasalt.i686
 # Prismlauncher for Minecraft
-dnf -y install prismlauncher
+#dnf -y install prismlauncher
 
 #VIRTUAL MACHINES
 dnf -y install quickemu
@@ -130,6 +130,8 @@ dnf -y clean all
 rm -rf /run/dnf /run/selinux-policy
 rm -rf /var/lib/dnf
 
+echo "INSTALLED PACKAGES"
+dnf list installed
 ############################
 # Install packages
 # Packages can be installed from any enabled yum repo on the image.
