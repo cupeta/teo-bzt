@@ -130,8 +130,8 @@ dnf -y clean all
 rm -rf /run/dnf /run/selinux-policy
 rm -rf /var/lib/dnf
 
-echo "INSTALLED PACKAGES"
-dnf list installed
+#echo "INSTALLED PACKAGES"
+#dnf list installed
 ############################
 # Install packages
 # Packages can be installed from any enabled yum repo on the image.
