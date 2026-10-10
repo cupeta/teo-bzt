@@ -37,14 +37,13 @@ dnf -y install waybar
 # wofi (menu and app launcher)
 dnf -y install wofi
 # gtk customization tool
-dnf -y copr enable tofik/nwg-shell
+#dnf -y copr enable tofik/nwg-shell
 dnf -y install nwg-look
-#lxqt desktop manager
-dnf -y install @xfce-desktop
+#dnf -y install @xfce-desktop
 
 # DESKTOP APPS
 # terminal
-dnf -y copr enable ponesicek/ghostty-bin
+#dnf -y copr enable ponesicek/ghostty-bin
 dnf -y install ghostty
 # file manager
 dnf -y install pcmanfm
@@ -57,6 +56,7 @@ dnf -y install qpwgraph easyeffects vlc
 # office & productiviy
 dnf -y install libreoffice mousepad homebank galculator 
 #telegram-desktop
+#dnf -y install telegram-desktop
 # graphic design & photo editing
 dnf -y install inkscape gimp blender
 # kmonad for keyboard macros
@@ -103,7 +103,6 @@ bash /ctx/shoopdaloop.sh
 #f ully-featured ffmpeg & OBS with nonfree components from rpm fusion (from morrolinux/morros)
 dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 dnf -y install ffmpeg x264-libs obs-studio obs-studio-plugin-x264 --allowerasing
-
 # GAMING
 # packages copied from rakuos setup-gaming
 #dnf -y copr enable atim/heroic-games-launcher
@@ -112,16 +111,9 @@ dnf -y install ffmpeg x264-libs obs-studio obs-studio-plugin-x264 --allowerasing
 #dnf -y install prismlauncher
 
 #VIRTUAL MACHINES
-#dnf -y install quickemu
-
-#POST INSTALL
-
-#listing installed nvidia packages
-#dnf list --installed | grep "nvidia"
-
+dnf -y install quickemu
 #greeter
 bash /ctx/ly.sh
-
 # enable systemd units
 systemctl enable podman.socket
 systemctl enable tailscaled
