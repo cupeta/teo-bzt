@@ -14,7 +14,7 @@ chmod +x /etc/profile.d/opt-bin_path.sh
 
 # SYSTEM APPS
 #VIRTUAL MACHINES
-dnf -y install mesa-demos
+dnf -y --disableexcludes=all install mesa-demos
 dnf -y install quickemu
 # fuse2 libs for some AppImages to work correctly
 dnf -y install fuse-libs
