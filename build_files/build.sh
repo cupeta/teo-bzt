@@ -37,7 +37,7 @@ dnf -y install waybar
 # wofi (menu and app launcher)
 dnf -y install wofi
 # gtk customization tool
-#dnf -y copr enable tofik/nwg-shell
+dnf -y copr enable tofik/nwg-shell
 dnf -y install nwg-look
 #dnf -y install @xfce-desktop
 
