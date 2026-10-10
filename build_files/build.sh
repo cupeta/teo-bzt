@@ -112,7 +112,7 @@ dnf -y install ffmpeg x264-libs obs-studio obs-studio-plugin-x264 --allowerasing
 #dnf -y install prismlauncher
 
 #VIRTUAL MACHINES
-dnf -y install quickemu
+#dnf -y install quickemu
 
 #POST INSTALL
 
