@@ -4,18 +4,13 @@ set -ouex pipefail
 
 # dnf speedup
 sed -i '/^\[main\]/a max_parallel_downloads=10' /etc/dnf/dnf.conf
-
 # set up custom /opt/bin folder for extra apps (non-dnf software,like AppImages)
 mkdir /opt/bin
 # add /opt/bin path to system-wide bashrc and etc/profile
 echo 'export PATH="$PATH:/opt/bin"' | tee -a /etc/bash.bashrc
 echo 'export PATH="$PATH:/opt/bin"' |  tee /etc/profile.d/opt-bin_path.sh
 chmod +x /etc/profile.d/opt-bin_path.sh
-
 # SYSTEM APPS
-#VIRTUAL MACHINES
-dnf5 -y --setopt=disable_excludes=* install mesa-demos
-dnf -y install quickemu
 # fuse2 libs for some AppImages to work correctly
 dnf -y install fuse-libs
 # power settings\battery managment for laptops
@@ -32,23 +27,40 @@ dnf -y install android-tools
 # nvtop for monitoring nvidia gpu
 dnf -y install nvtop
 # DESKTOP ENVIRONMENT
-
+# remove gnome
+dnf  -y remove @gnome-desktop
 # Hyprland window manager
+export pkg=hyprland
+if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
+echo $pkg available
+else
 bash /ctx/hyprland.sh
+fi
 # waybar
 dnf -y install waybar
 # wofi (menu and app launcher)
 dnf -y install wofi
 # gtk customization tool
-dnf -y copr enable tofik/nwg-shell
-dnf -y install nwg-look
-#lxqt desktop manager
-dnf -y install @xfce-desktop
+
+export pkg=nwg-look
+export copr=tofik/nwg-shell
+if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
+echo $pkg available
+else
+    dnf -y copr enable "$copr"
+fi
+dnf -y install "$pkg"
 
 # DESKTOP APPS
 # terminal
-dnf -y copr enable ponesicek/ghostty-bin
-dnf -y install ghostty
+export pkg=ghostty
+export copr=ponesicek/ghostty-bin
+if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
+echo $pkg available
+else
+    dnf -y copr enable "$copr"
+fi
+dnf -y install "$pkg"
 # file manager
 dnf -y install pcmanfm
 # ark for opening archives
@@ -58,8 +70,7 @@ dnf -y install firefox transmission
 # audio utils
 dnf -y install qpwgraph easyeffects vlc
 # office & productiviy
-dnf -y install libreoffice mousepad homebank galculator 
-#telegram-desktop
+dnf -y install libreoffice mousepad homebank galculator telegram-desktop
 # graphic design & photo editing
 dnf -y install inkscape gimp blender
 # kmonad for keyboard macros
@@ -92,7 +103,8 @@ dnf -y copr enable ycollet/audinux
 ln -s /usr/lib64/pipewire-0.3/jack/libjack.so.0 /usr/lib64/libjack.so
 # libraries for some audio plugins to work correctly
 dnf -y install lv2-gtk-ui-bridge
-dnf -y install JUCE zenity
+dnf -y install JUCE
+dnf -y install zenity
 # DAW plugins
 dnf -y install guitarix lsp-plugins
 # install Musescore music sheet editor
@@ -107,14 +119,38 @@ bash /ctx/shoopdaloop.sh
 dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 dnf -y install ffmpeg x264-libs obs-studio obs-studio-plugin-x264 --allowerasing
 
-# GAMING
-# packages copied from rakuos setup-gaming
-#dnf -y copr enable atim/heroic-games-launcher
-#dnf -y install steam lutris heroic-games-launcher lact goverlay mangohud mangohud.i686 protonplus protontricks vkBasalt vkBasalt.i686
+#GAMING
+# packages list copied from rakuos setup-gaming
+dnf -y install steam lutris lact goverlay mangohud mangohud.i686 protonplus protontricks vkBasalt vkBasalt.i686
+export pkg=heroic-games-launcher
+if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
+ echo $pkg available
+ dnf -y install "$pkg"
+else
+  wget "$(curl -fsSL https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases/latest |
+  grep 'browser_download_url' |
+  grep '\.rpm' |
+  head -n 1 |
+  cut -d '"' -f 4)"
+  dnf -y install ./Heroic*.rpm 
+fi
 # Prismlauncher for Minecraft
-#dnf -y install prismlauncher
+export pkg=prismlaucher
+export copr=xiaozhangup/prismlauncher
+if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
+echo $pkg available
+else
+    dnf -y copr enable "$copr"
+    
+    if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
+      dnf -y install "$pkg"
+    else
+      echo pakage $pkg not found in copr $copr
+    fi
+fi
 
-
+#VIRTUAL MACHINES
+dnf -y install quickemu
 
 #POST INSTALL
 
@@ -126,14 +162,12 @@ bash /ctx/ly.sh
 
 # enable systemd units
 systemctl enable podman.socket
-systemctl enable tailscaled
+#systemctl enable tailscaled
 # clean up dnf cache to reduce image size
 dnf -y clean all
 rm -rf /run/dnf /run/selinux-policy
 rm -rf /var/lib/dnf
 
-#echo "INSTALLED PACKAGES"
-#dnf list installed
 ############################
 # Install packages
 # Packages can be installed from any enabled yum repo on the image.
