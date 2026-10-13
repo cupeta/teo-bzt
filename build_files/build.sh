@@ -27,8 +27,8 @@ dnf -y install android-tools
 # nvtop for monitoring nvidia gpu
 dnf -y install nvtop
 # DESKTOP ENVIRONMENT
-# remove gnome
-dnf  -y remove @gnome-desktop
+# remove kde
+dnf -y remove @kde-desktop-environment
 # Hyprland window manager
 export pkg=hyprland
 if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
