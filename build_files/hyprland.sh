@@ -2,7 +2,7 @@
 dnf -y copr enable craftidore/wayblueorg-hyprland
 #Install Hyprland  & plugins
 dnf -y install  hyprland-git hyprsunset hyprpaper hyprpolkitagent hyprland-guiutils
-
+dnf -y install xdg-desktop-portal-hyprland xdg-desktop-portal-wlr
 ### fix for screen sharing
 cat > /usr/lib/systemd/user/xdg-desktop-portal.service << EOF
 [Unit]
