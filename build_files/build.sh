@@ -22,13 +22,11 @@ dnf -y install tailscale
 #drivers for connecting android devices
 dnf -y install android-tools
 
-#cuda drivers for llm
-#dnf -y install nvidia-driver-cuda
 # nvtop for monitoring nvidia gpu
 dnf -y install nvtop
 # DESKTOP ENVIRONMENT
-# remove kde
-dnf -y remove @kde-desktop-environment
+# remove sddm
+dnf -y remove sddm
 # Hyprland window manager
 export pkg=hyprland
 if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
