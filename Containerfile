@@ -1,5 +1,5 @@
 #argument for base image --mh
-ARG BASE_IMAGE=ghcr.io/ublue-os/bazzite-nvidia
+ARG BASE_IMAGE=ghcr.io/ublue-os/bazzite-nvidia-open
 #argument for tag (e.g :latest , :staging) or digest (@sha256:1234abcd...) --mh
 #default is ARG TAG_OR_DIGEST=:latest  --mh
 ARG TAG_OR_DIGEST=:latest
