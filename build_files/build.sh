@@ -137,7 +137,7 @@ else
   dnf -y install ./Heroic*.rpm 
 fi
 # Prismlauncher for Minecraft
-export pkg=prismlaucher
+export pkg=prismlauncher
 export copr=xiaozhangup/prismlauncher
 if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
 echo $pkg available
@@ -152,7 +152,7 @@ else
 fi
 
 #VIRTUAL MACHINES
-dnf -y install quickemu
+#dnf -y install quickemu
 
 #POST INSTALL
 
