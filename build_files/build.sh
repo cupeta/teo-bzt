@@ -122,7 +122,8 @@ dnf -y install ffmpeg x264-libs obs-studio obs-studio-plugin-x264 --allowerasing
 
 #GAMING
 # packages list copied from rakuos setup-gaming
-dnf -y install steam lutris lact goverlay mangohud mangohud.i686 protonplus protontricks vkBasalt vkBasalt.i686
+dnf -y install steam lutris goverlay mangohud mangohud.i686 protontricks vkBasalt vkBasalt.i686
+#lact protonplus
 export pkg=heroic-games-launcher
 if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
  echo $pkg available
