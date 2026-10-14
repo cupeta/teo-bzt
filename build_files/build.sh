@@ -80,9 +80,6 @@ chmod +x /opt/Telegram/Telegram
 ln -s /opt/Telegram/Telegram /opt/bin/telegram
 # graphic design & photo editing
 dnf -y install inkscape gimp blender
-# kmonad for keyboard macros
-dnf -y install kmonad
-
 # REMOTE DEKSTOP
 #wf-recorder for screen sharing
 dnf -y install wf-recorder
@@ -92,8 +89,14 @@ dnf -y install Sunshine
 # Moonlight (client)
 bash /ctx/moonlight.sh
 # CODING & DEV TOOLS
-# setup lua (RakuOS seems to force overlay install for luarocks...?)
-# bash /ctx/lua.sh
+#kmonad for keyboard macros macros
+dnf -y install kmonad
+#create udev rule allowing kmonad controls over inputs - ! user must be added to input group with usermod -aG input $USER
+cat > /etc/udev/rules.d/99-kmonad-input.rules << EOF
+SUBSYSTEM=="input", KERNEL=="event*", MODE="0660", GROUP="input"
+EOF
+#lua
+bash /ctx/lua.sh
 # cosign for OCI image signing
 bash /ctx/cosign.sh
 #AI 
