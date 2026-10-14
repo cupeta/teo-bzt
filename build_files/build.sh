@@ -6,9 +6,6 @@ set -ouex pipefail
 sed -i '/^\[main\]/a max_parallel_downloads=10' /etc/dnf/dnf.conf
 # set up custom /opt/bin folder for extra apps (non-dnf software,like AppImages)
 
-#remove all flatpaks
-flatpak uninstall --system --all --delete-data
-
 # set up /opt/bin
 mkdir /opt/bin
 # add /opt/bin path to system-wide bashrc and etc/profile
@@ -64,6 +61,8 @@ else
     dnf -y copr enable "$copr"
 fi
 dnf -y install "$pkg"
+#text editor
+dnf -y install micro
 # file manager
 dnf -y install pcmanfm
 # ark for opening archives
@@ -73,8 +72,8 @@ dnf -y install firefox transmission
 # audio utils
 dnf -y install qpwgraph easyeffects vlc
 # office & productiviy
-dnf -y install libreoffice mousepad homebank galculator 
-#dnf -y install telegram-desktop
+dnf -y install libreoffice homebank galculator 
+dnf -y install telegram-desktop
 # graphic design & photo editing
 dnf -y install inkscape gimp blender
 # kmonad for keyboard macros
