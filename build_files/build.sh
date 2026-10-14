@@ -5,6 +5,11 @@ set -ouex pipefail
 # dnf speedup
 sed -i '/^\[main\]/a max_parallel_downloads=10' /etc/dnf/dnf.conf
 # set up custom /opt/bin folder for extra apps (non-dnf software,like AppImages)
+
+#remove all flatpaks
+flatpak uninstall --system --all --delete-data
+
+# set up /opt/bin
 mkdir /opt/bin
 # add /opt/bin path to system-wide bashrc and etc/profile
 echo 'export PATH="$PATH:/opt/bin"' | tee -a /etc/bash.bashrc
