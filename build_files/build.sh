@@ -12,23 +12,10 @@ mkdir /opt/bin
 echo 'export PATH="$PATH:/opt/bin"' | tee -a /etc/bash.bashrc
 echo 'export PATH="$PATH:/opt/bin"' |  tee /etc/profile.d/opt-bin_path.sh
 chmod +x /etc/profile.d/opt-bin_path.sh
-# SYSTEM APPS
-# fuse2 libs for some AppImages to work correctly
-dnf -y install fuse-libs
-# power settings\battery managment for laptops
-dnf -y install power-profiles-daemon  --allowerasing
-# cifs-utils for samba mounts
-dnf -y install cifs-utils
-# Tailscale for private vpn
-dnf -y install tailscale
-#drivers for connecting android devices
-dnf -y install android-tools
 
-# nvtop for monitoring nvidia gpu
-dnf -y install nvtop
 # DESKTOP ENVIRONMENT
-# remove sddm
-dnf -y remove sddm
+# remove plasma
+dnf -y remove --autoremove plasma-desktop
 # Hyprland window manager
 export pkg=hyprland
 if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
@@ -40,8 +27,20 @@ fi
 dnf -y install waybar
 # wofi (menu and app launcher)
 dnf -y install wofi
+# SYSTEM APPS
+# fuse2 libs for some AppImages to work correctly
+dnf -y install fuse-libs
+# power settings\battery managment for laptops
+dnf -y install power-profiles-daemon  --allowerasing
+# cifs-utils for samba mounts
+dnf -y install cifs-utils
+# Tailscale for private vpn
+dnf -y install tailscale
+#drivers for connecting android devices
+dnf -y install android-tools
+# nvtop for monitoring nvidia gpu
+dnf -y install nvtop
 # gtk customization tool
-
 export pkg=nwg-look
 export copr=tofik/nwg-shell
 if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
@@ -73,7 +72,12 @@ dnf -y install firefox transmission
 dnf -y install qpwgraph easyeffects vlc
 # office & productiviy
 dnf -y install libreoffice homebank galculator 
-dnf -y install telegram-desktop
+#TELEGRAM
+wget https://telegram.org/dl/desktop/linux
+tar -xf linux
+mv Telegram /opt/Telegram
+chmod +x /opt/Telegram/Telegram
+ln -s /opt/Telegram/Telegram /opt/bin/telegram
 # graphic design & photo editing
 dnf -y install inkscape gimp blender
 # kmonad for keyboard macros
@@ -87,18 +91,14 @@ dnf copr enable -y lizardbyte/stable
 dnf -y install Sunshine
 # Moonlight (client)
 bash /ctx/moonlight.sh
-
 # CODING & DEV TOOLS
 # setup lua (RakuOS seems to force overlay install for luarocks...?)
 # bash /ctx/lua.sh
 # cosign for OCI image signing
 bash /ctx/cosign.sh
-
 #AI 
 #requirments for unsloth
 dnf -y install cmake git gcc gcc-c++ make libcurl-devel
-
-
 # MUSIC PRODUCTION
 # ycollect/audinux repo with many audio plugins
 dnf -y copr enable ycollet/audinux
@@ -137,6 +137,7 @@ else
   head -n 1 |
   cut -d '"' -f 4)"
   dnf -y install ./Heroic*.rpm 
+  rm Heroic*.rpm
 fi
 # Prismlauncher for Minecraft
 export pkg=prismlauncher
