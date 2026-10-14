@@ -15,7 +15,7 @@ chmod +x /etc/profile.d/opt-bin_path.sh
 
 # DESKTOP ENVIRONMENT
 # remove plasma
-dnf -y remove --autoremove plasma-desktop
+dnf -y remove plasma-desktop
 # Hyprland window manager
 export pkg=hyprland
 if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
