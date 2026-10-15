@@ -7,6 +7,7 @@ sed -i '/^\[main\]/a max_parallel_downloads=10' /etc/dnf/dnf.conf
 # set up custom /opt/bin folder for extra apps (non-dnf software,like AppImages)
 
 # set up /opt/bin
+mkdir /opt
 mkdir /opt/bin
 # add /opt/bin path to system-wide bashrc and etc/profile
 echo 'export PATH="$PATH:/opt/bin"' | tee -a /etc/bash.bashrc
