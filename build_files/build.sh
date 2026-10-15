@@ -137,7 +137,7 @@ if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg
 else
   wget "$(curl -fsSL https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases/latest |
   grep 'browser_download_url' |
-  grep '\.rpm' |
+  grep '\x86_64.rpm' |
   head -n 1 |
   cut -d '"' -f 4)"
   dnf -y install ./Heroic*.rpm 
