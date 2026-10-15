@@ -52,6 +52,7 @@ dnf -y install "$pkg"
 
 # DESKTOP APPS
 # terminal
+dnf -y install foot
 export pkg=ghostty
 export copr=ponesicek/ghostty-bin
 if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
