@@ -40,6 +40,8 @@ dnf -y install tailscale
 dnf -y install android-tools
 # nvtop for monitoring nvidia gpu
 dnf -y install nvtop
+#qt customization tools
+dnf -y install kvantum kvantum-qt5 qt5ct qt6ct
 # gtk customization tool
 export pkg=nwg-look
 export copr=tofik/nwg-shell
@@ -53,14 +55,6 @@ dnf -y install "$pkg"
 # DESKTOP APPS
 # terminal
 dnf -y install foot
-export pkg=ghostty
-export copr=ponesicek/ghostty-bin
-if dnf -q repoquery --available --queryformat '%{name}' "$pkg" | grep -Fxq "$pkg"; then
-echo $pkg available
-else
-    dnf -y copr enable "$copr"
-fi
-dnf -y install "$pkg"
 #text editor
 dnf -y install micro
 # file manager
