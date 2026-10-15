@@ -32,7 +32,7 @@ dnf -y install wofi
 # fuse2 libs for some AppImages to work correctly
 dnf -y install fuse-libs
 # power settings\battery managment for laptops
-dnf -y install power-profiles-daemon tlp --allowerasing
+dnf -y install power-profiles-daemon --allowerasing
 # cifs-utils for samba mounts
 dnf -y install cifs-utils
 # Tailscale for private vpn
