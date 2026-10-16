@@ -17,6 +17,10 @@ FROM ${BASE_IMAGE}${TAG_OR_DIGEST}
 ARG BASE_IMAGE
 RUN echo latest digest for image $BASE_IMAGE is: $(skopeo inspect docker://$BASE_IMAGE:latest | jq -r '.Digest')
 
+# Change Plymouth Boot Logo
+COPY system_files/watermark.png /usr/share/plymouth/themes/spinner/watermark.png
+COPY system_files/watermark.png /usr/share/plymouth/themes/bgrt/watermark.png
+
 #edit os ID to use fedora COPR in dnf,from morrolinux --mh
 RUN sed -i 's/^ID=.*/ID=fedora/' /etc/os-release
 
