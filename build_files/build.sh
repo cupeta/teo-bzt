@@ -165,9 +165,6 @@ bash /ctx/ly.sh
 
 # enable systemd units
 systemctl enable podman.socket
-#replacing bazzite logo with custom logo 
-rm /usr/share/plymouth/themes/spinner/watermark.png 
-cp /ctx/watermark.png /usr/share/plymouth/themes/spinner/.
 # clean up dnf cache to reduce image size
 dnf -y clean all
 rm -rf /run/dnf /run/selinux-policy
