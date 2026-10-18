@@ -58,7 +58,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 RUN set -eux; \
     kver="$(ls /usr/lib/modules)"; \
     env DRACUT_NO_XATTR=1 dracut --force --verbose \
-      "/usr/lib/modules/${kver}/initramfs.img" "${kver}"; \
+      "/usr/lib/modules/${kver}/initramfs.img" "${kver}"
 ### LINTING
 ## Verify final image and contents are correct.
 RUN bootc container lint
