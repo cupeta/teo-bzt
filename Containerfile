@@ -54,7 +54,11 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/build.sh
-
+##update intramfs (to replace bazzite watermark.png)
+RUN set -eux; \
+    kver="$(ls /usr/lib/modules)"; \
+    env DRACUT_NO_XATTR=1 dracut --force --verbose \
+      "/usr/lib/modules/${kver}/initramfs.img" "${kver}"; \
 ### LINTING
 ## Verify final image and contents are correct.
 RUN bootc container lint
