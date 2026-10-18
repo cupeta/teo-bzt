@@ -74,7 +74,7 @@ mv Telegram /opt/Telegram
 chmod +x /opt/Telegram/Telegram
 ln -s /opt/Telegram/Telegram /opt/bin/telegram
 # graphic design & photo editing
-dnf -y install inkscape gimp blender
+dnf -y install inkscape gimp blender flameshot
 # REMOTE DEKSTOP
 #wf-recorder for screen sharing
 dnf -y install wf-recorder
