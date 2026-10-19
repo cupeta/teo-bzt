@@ -56,7 +56,7 @@ dnf -y install "$pkg"
 # terminal
 dnf -y install foot
 #text editor
-dnf -y install micro
+dnf -y install micro fresh
 # file manager
 dnf -y install pcmanfm
 # ark for opening archives
@@ -64,9 +64,9 @@ dnf -y install ark
 # web browser & internet tools
 dnf -y install firefox transmission
 # audio utils
-dnf -y install qpwgraph easyeffects vlc
+dnf -y install qpwgraph easyeffects vlc mpv
 # office & productiviy
-dnf -y install libreoffice homebank galculator 
+dnf -y install libreoffice homebank galculator papers
 #TELEGRAM
 wget https://telegram.org/dl/desktop/linux
 tar -xf linux
