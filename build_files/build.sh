@@ -92,6 +92,8 @@ SUBSYSTEM=="input", KERNEL=="event*", MODE="0660", GROUP="input"
 EOF
 #lua
 bash /ctx/lua.sh
+#lsp
+dnf -y install lua-language-server
 # cosign for OCI image signing
 bash /ctx/cosign.sh
 #AI 
