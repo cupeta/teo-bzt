@@ -56,7 +56,7 @@ dnf -y install "$pkg"
 # terminal
 dnf -y install foot
 #text editor
-dnf -y install micro fresh
+dnf -y install micro
 # file manager
 dnf -y install pcmanfm
 # ark for opening archives
